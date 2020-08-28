@@ -9,7 +9,7 @@
 
 可以自由选择vmess或者vless协议
 
-## 先安装依赖wget
+## 先安装依赖wget,最好连docker和docker-compose也先装好
 
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/hqhyco/v2ray_tls_tcp_trojan_docker/master/go.sh && bash go.sh
