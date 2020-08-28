@@ -96,6 +96,7 @@ echo "Server:" $domainName
 echo "Port: 443"
 echo "UUID:" $uuid
 echo "AlterId: 0"
+echo "level: 0"
 echo "security: auto"
 echo "network: tcp" 
 echo "type: none" 
@@ -113,11 +114,12 @@ echo "Enjoy it!"
 
 cat <<-EOF >./info.txt
     -----------------------------------------------
-    V2ray Configuration:
+    V2ray-vmess Configuration:
     Server: $domainName
     Port: 443
     UUID: $uuid
     AlterId: 0
+    level: 0
     security: auto
     network: tcp
     type: none
@@ -185,7 +187,7 @@ echo "Enjoy it!"
 
 cat <<-EOF >./info.txt
     -----------------------------------------------
-    V2ray Configuration:
+    V2ray-vless Configuration:
     Server: $domainName
     Port: 443
     UUID: $uuid
