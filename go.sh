@@ -167,6 +167,7 @@ echo "V2ray-vless Configuration:"
 echo "Server:" $domainName
 echo "Port: 443"
 echo "UUID:" $uuid
+echo "level: 0"
 echo "decryption: none"
 echo "network: tcp" 
 echo "type: none" 
@@ -188,6 +189,7 @@ cat <<-EOF >./info.txt
     Server: $domainName
     Port: 443
     UUID: $uuid
+    level: 0
     decryption: none
     network: tcp
     type: none
