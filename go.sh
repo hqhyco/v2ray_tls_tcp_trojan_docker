@@ -42,7 +42,7 @@ if [ "$checkDocker" == "" ]; then
 fi
 if [ "$checkDockerCompose" == "" ]; then
   green "docker-compose未安装，开始安装docker-compos"
-	curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
   ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
   green "恭喜docker-compose结束！！"
@@ -55,7 +55,7 @@ if [[ -e "v2ray_tls_tcp_trojan_docker.zip" ]]; then
 unzip -o v2ray_tls_tcp_trojan_docker.zip
 [[ -e "/root/v2ray/config.json" ]] && rm /root/v2ray/config.json
 else
-wget https://raw.githubusercontent.com/hqhyco/V2ray_Trojan_Docker/master/V2ray_Trojan_Docker.zip
+wget -N --no-check-certificate https://github.com/hqhyco/v2ray_tls_tcp_trojan_docker/raw/master/v2ray_tls_tcp_trojan_docker.zip
 unzip -o v2ray_tls_tcp_trojan_docker.zip
 fi
 
