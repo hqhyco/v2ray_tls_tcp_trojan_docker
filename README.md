@@ -5,11 +5,15 @@
 参考大神的https://github.com/phlinhng/v2ray-tcp-tls-web
 ```
 
+采用的是v2ray的tcp+tls
+
 添加支持最新的vless协议
 
 可以自由选择vmess或者vless协议
 
 ## 先安装依赖wget,最好连docker和docker-compose也先装好
+
+## 一键脚本
 
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/hqhyco/v2ray_tls_tcp_trojan_docker/master/go.sh && bash go.sh
