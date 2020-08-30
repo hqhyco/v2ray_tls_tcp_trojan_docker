@@ -1,0 +1,28 @@
+{
+    "inbounds": [
+        {
+            "protocol": "vmess",
+            "listen": "0.0.0.0",
+            "port": 10000,
+            "settings": {
+                "clients": [
+                    {
+                        "id": "98bc7998-8e06-4193-84e2-38f2e10ee763"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ds",
+                "dsSettings": {
+                     "path": "/sock/v2ray.sock"
+                }
+
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        }
+    ]
+}

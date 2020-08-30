@@ -1,0 +1,18 @@
+{
+  "run_type": "server",
+  "local_addr": "0.0.0.0",
+  "local_port": 4567,
+  "remote_addr": "1.1.1.1",
+  "remote_port": 80,
+  "log_level": 3,
+  "password": [
+    "123456"
+  ],
+  "transport_plugin": {
+    "enabled": true,
+    "type": "plaintext"
+  },
+  "router": {
+    "enabled": false
+  }
+}

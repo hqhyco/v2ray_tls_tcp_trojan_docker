@@ -1,0 +1,19 @@
+listen: 0.0.0.0:443
+redirecthttps: 0.0.0.0:80
+
+vhosts:
+  - name: abc.com
+    tlsoffloading: true
+    managedcert: true
+    keytype: p256
+    alpn: h2,http/1.1
+    protocols: tls12,tls13
+    http:
+      handler: fileServer
+      args: /var/www/html
+    default:
+      handler: proxyPass
+      args: unix:/sock/v2ray.sock
+    trojan:
+      handler: proxyPass
+      args: trojan:4567
