@@ -1,5 +1,5 @@
 # v2ray_tls_tcp_trojan_docker
- tls分流器+v2ray+trojan+网页伪装docker版
+ v2ray+tcp+tls+trojan-go+web的docker版
 
 ```
 参考大神的https://github.com/phlinhng/v2ray-tcp-tls-web
