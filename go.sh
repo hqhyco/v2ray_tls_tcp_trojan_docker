@@ -265,6 +265,9 @@ start_menu(){
     4)
     docker-compose pull
     docker-compose up -d --build
+    green "更新完成！"
+    sleep 1s
+    start_menu
     ;;
     5)
     docker rm -f trojan v2ray tls-shunt-proxy
