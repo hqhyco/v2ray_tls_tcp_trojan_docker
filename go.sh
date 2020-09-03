@@ -225,7 +225,7 @@ function remove(){
   [[ $confirm != "y" ]] && exit 1
   docker rm -f trojan v2ray tls-shunt-proxy
   cd /root
-  rm -rf tls-shunt-proxy v2ray trojan docker-compose.yml info.txt
+  rm -rf tls-shunt-proxy v2ray trojan docker-compose.yml info.txt v2ray_tls_tcp_trojan_docker.zip
   green "删除成功！"
 }
 
