@@ -93,6 +93,7 @@ docker-compose up -d
 chmod 666 /root/v2ray/sock/v2ray.sock
 VMESSCODE=$(base64 -w 0 << EOF
     {
+      "v": "2"
       "ps": "v2-top",
       "add": "${domainName}",
       "port": "443",
