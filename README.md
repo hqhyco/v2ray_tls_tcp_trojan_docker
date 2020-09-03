@@ -11,7 +11,7 @@
 
 可以自由选择vmess或者vless协议
 
-## 先安装依赖wget,最好连docker和docker-compose也先装好
+## 先安装wget,最好连docker和docker-compose也先装好
 
 ## 一键脚本
 
