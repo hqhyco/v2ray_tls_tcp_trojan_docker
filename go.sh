@@ -54,6 +54,7 @@ cd /root
 if [[ -e "v2ray_tls_tcp_trojan_docker.zip" ]]; then
 unzip -o v2ray_tls_tcp_trojan_docker.zip
 [[ -e "/root/v2ray/config.json" ]] && rm /root/v2ray/config.json
+[[ -e "/root/trojan/config.json" ]] && rm /root/trojan/config.json
 else
 wget -N --no-check-certificate https://github.com/hqhyco/v2ray_tls_tcp_trojan_docker/raw/master/v2ray_tls_tcp_trojan_docker.zip
 unzip -o v2ray_tls_tcp_trojan_docker.zip
@@ -109,6 +110,7 @@ green "v2ray配置链接："
 echo vmess://${VMESSCODE}
 green "trojan配置链接："
 echo "trojan:${trojan_password}@${domainName}:443"
+green "trojan配置链接："
 cat <<-EOF >./info.txt
     -----------------------------------------------
     vmess://$VMESSCODE
@@ -149,7 +151,7 @@ else
   sed -i "s/abc.com/$domainName/g" ./tls-shunt-proxy/config.yaml
 fi
   read -p "请输入trojan的密码(eg: 123456): " trojan_password
-  sed -i "s/123456/$trojan_password/g" ./trojan/config.json
+  sed -i "s/123456/$trojan_password/g" ./trojan/config.json.bak
 
 
 sys=$(uname)
@@ -163,8 +165,11 @@ fi
 
 sed -i "s/98bc7998-8e06-4193-84e2-38f2e10ee763/$uuid/g" ./v2ray/config-vless.json
 cp ./v2ray/config-vless.json ./v2ray/config.json
+cp ./trojan/config.json.bak ./trojan/config.json
 docker-compose up -d
 chmod 666 /root/v2ray/sock/v2ray.sock
+echo "-----------------------------------------------"
+echo "vless还没分享链接，自己手动配置吧"
 echo "-----------------------------------------------"
 echo "V2ray-vless Configuration:"
 echo "Server:" $domainName
@@ -188,6 +193,8 @@ echo "Enjoy it!"
 
 cat <<-EOF >./info.txt
     -----------------------------------------------
+    "vless还没分享链接，自己手动配置吧"
+    -----------------------------------------------
     V2ray-vless Configuration:
     Server: $domainName
     Port: 443
@@ -209,6 +216,16 @@ cat <<-EOF >./info.txt
 EOF
 }
 
+function remove(){
+  red "所有的都会删除掉哦！！"
+  read -p "确认输入y" confirm
+  [[ $confirm != "y" ]] && exit 1
+  docker rm -f trojan v2ray tls-shunt-proxy
+  cd /root
+  rm -rf tls-shunt-proxy v2ray trojan docker-compose.yml info.txt
+  green "删除成功！"
+}
+
 
 start_menu(){
     clear
@@ -220,6 +237,10 @@ start_menu(){
     echo
     green " 1. v2ray+vless+tcp+tls+trojan+网页伪装"
     green " 2. v2ray+vmess+tcp+tls+trojan+网页伪装"
+    green " 3. 查看链接和配置"
+    green " 4. 更新到最新的镜像并应用到容器"
+    green " 5. 卸载(卸载后才可以更换v2ray协议)"
+    green " 6. 删除(所有的都会删除掉哦！！)"
     blue " 0. 退出脚本"
     echo
     read -p "请输入数字:" num
@@ -231,6 +252,22 @@ start_menu(){
     2)
     first
     install_vmess
+    ;;
+    3)
+    [[ -e "/root/info.txt" ]] && cat /root/info.txt || red "还未安装v2ray和Trojan！"
+    ;;
+    4)
+    docker-compose pull
+    docker-compose up -d --build
+    ;;
+    5)
+    docker rm -f trojan v2ray tls-shunt-proxy
+    green "卸载完成！"
+    sleep 1s
+    start_menu
+    ;;
+    6)
+    remove
     ;;
     0)
     exit 1
