@@ -94,7 +94,7 @@ chmod 666 /root/v2ray/sock/v2ray.sock
 VMESSCODE=$(base64 -w 0 << EOF
     {
       "v": "2"
-      "ps": "v2-top",
+      "ps": "${domainName}",
       "add": "${domainName}",
       "port": "443",
       "id": "${uuid}",
@@ -259,6 +259,8 @@ start_menu(){
     ;;
     3)
     [[ -e "/root/info.txt" ]] && cat /root/info.txt || red "还未安装v2ray和Trojan！"
+    sleep 1s
+    start_menu
     ;;
     4)
     docker-compose pull
