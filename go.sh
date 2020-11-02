@@ -91,8 +91,6 @@ sed -i "s/98bc7998-8e06-4193-84e2-38f2e10ee763/$uuid/g" ./v2ray/config-vmess.jso
 cp ./v2ray/config-vmess.json ./v2ray/config.json
 docker-compose up -d
 chmod 666 /root/v2ray/sock/v2ray.sock
-green "trojan配置链接："
-echo "trojan://${trojan_password}@${domainName}:443"
 cat <<-EOF >./info.txt
     -----------------------------------------------
     V2ray-vmess Configuration:
@@ -117,6 +115,8 @@ cat <<-EOF >./info.txt
     Password: $trojan_password
     -----------------------------------------------
 EOF
+
+cat /root/info.txt
 }
 
 
@@ -148,28 +148,6 @@ cp ./v2ray/config-vless.json ./v2ray/config.json
 cp ./trojan/config.json.bak ./trojan/config.json
 docker-compose up -d
 chmod 666 /root/v2ray/sock/v2ray.sock
-green "trojan配置链接："
-echo "trojan://${trojan_password}@${domainName}:443"
-echo "-----------------------------------------------"
-echo "V2ray-vless Configuration:"
-echo "Server:" $domainName
-echo "Port: 443"
-echo "UUID:" $uuid
-echo "level: 1"
-echo "decryption: none"
-echo "network: tcp" 
-echo "type: none" 
-echo "host: " 
-echo "path: " 
-echo "TLS: True"
-echo "allowInsecure: false"
-echo "-----------------------------------------------"
-echo "Trojan Configuration:"
-echo "Server:" $domainName
-echo "Port: 443"
-echo "Password:" $trojan_password
-echo "-----------------------------------------------"
-echo "Enjoy it!"
 
 cat <<-EOF >./info.txt
     -----------------------------------------------
@@ -194,6 +172,8 @@ cat <<-EOF >./info.txt
     Password: $trojan_password
     -----------------------------------------------
 EOF
+
+cat /root/info.txt
 }
 
 function remove(){
