@@ -178,7 +178,7 @@ cat /root/info.txt
 
 function remove(){
   red "所有的都会删除掉哦！！"
-  read -p "确认输入y" confirm
+  read -p "确认输入y:" confirm
   [[ $confirm != "y" ]] && exit 1
   docker rm -f trojan v2ray tls-shunt-proxy
   cd /root
