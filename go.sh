@@ -215,8 +215,6 @@ start_menu(){
     ;;
     3)
     [[ -e "/root/info.txt" ]] && cat /root/info.txt || red "还未安装v2ray和Trojan！"
-    sleep 1s
-    start_menu
     ;;
     4)
     docker-compose pull
