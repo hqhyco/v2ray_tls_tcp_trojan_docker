@@ -91,29 +91,9 @@ sed -i "s/98bc7998-8e06-4193-84e2-38f2e10ee763/$uuid/g" ./v2ray/config-vmess.jso
 cp ./v2ray/config-vmess.json ./v2ray/config.json
 docker-compose up -d
 chmod 666 /root/v2ray/sock/v2ray.sock
-VMESSCODE=$(base64 -w 0 << EOF
-    {
-      "v": "2"
-      "ps": "${domainName}",
-      "add": "${domainName}",
-      "port": "443",
-      "id": "${uuid}",
-      "aid": "0",
-      "net": "tcp",
-      "type": "none",
-      "host": "",
-      "path": "",
-      "tls": "tls"
-    }
-EOF
-)
-green "v2ray配置链接："
-echo vmess://${VMESSCODE}
 green "trojan配置链接："
 echo "trojan://${trojan_password}@${domainName}:443"
 cat <<-EOF >./info.txt
-    -----------------------------------------------
-    vmess://$VMESSCODE
     -----------------------------------------------
     V2ray-vmess Configuration:
     Server: $domainName
@@ -171,8 +151,6 @@ chmod 666 /root/v2ray/sock/v2ray.sock
 green "trojan配置链接："
 echo "trojan://${trojan_password}@${domainName}:443"
 echo "-----------------------------------------------"
-echo "vless还没分享链接，自己手动配置吧"
-echo "-----------------------------------------------"
 echo "V2ray-vless Configuration:"
 echo "Server:" $domainName
 echo "Port: 443"
@@ -194,8 +172,6 @@ echo "-----------------------------------------------"
 echo "Enjoy it!"
 
 cat <<-EOF >./info.txt
-    -----------------------------------------------
-    "vless还没分享链接，自己手动配置吧"
     -----------------------------------------------
     V2ray-vless Configuration:
     Server: $domainName
@@ -241,7 +217,7 @@ start_menu(){
     echo
     green " 1. v2ray+vless+tcp+tls+trojan+网页伪装"
     green " 2. v2ray+vmess+tcp+tls+trojan+网页伪装"
-    green " 3. 查看链接和配置"
+    green " 3. 查看配置"
     green " 4. 更新到最新的镜像并应用到容器"
     green " 5. 卸载(卸载后才可以更换v2ray协议)"
     green " 6. 删除(所有的都会删除掉哦！！)"
